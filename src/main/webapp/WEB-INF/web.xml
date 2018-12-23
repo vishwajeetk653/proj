@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/pages/login.jsp</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>com.svladiko.controller.AdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/adminController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientController</servlet-name>
+        <servlet-class>com.svladiko.controller.ClientController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientController</servlet-name>
+        <url-pattern>/clientController</url-pattern>
+    </servlet-mapping>
+    <filter>
+
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>com.svladiko.filters.SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/clientController</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/adminController</url-pattern>
+    </filter-mapping>
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>world</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+    <context-param>
+        <param-name>log4j-config-location</param-name>
+        <param-value>WEB-INF/log4j.properties</param-value>
+    </context-param>
+</web-app>
